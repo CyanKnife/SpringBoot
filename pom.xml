@@ -46,5 +46,9 @@
 		</plugins>
 	</build>
 
+	<!--spring-boot-starter-parent：继承spring boot的相关参数-->
+	<!--spring-boot-starter-xxx：代表一个spring boot模块-->
+	<!--spring-boot-starter-web：代表web模块，在这个模块中含了许多JAR包-->
+
 
 </project>
