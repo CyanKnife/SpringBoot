@@ -1,9 +1,12 @@
 package com.lgd.web;
 
+import com.lgd.web.mapper.MyMapper;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan(basePackages = "com.lgd.web.mapper", markerInterface = MyMapper.class)
 public class Application {
 
     public static void main(String[] args) {
