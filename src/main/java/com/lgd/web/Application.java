@@ -1,12 +1,12 @@
 package com.lgd.web;
 
-import com.lgd.web.mapper.MyMapper;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+//@EnableAutoConfiguration 用于自动配置。简单的说，它会根据你的pom配置（实际上应该是根据具体的依赖）来判断这是一个什么应用，并创建相应的环境。
 @SpringBootApplication
-@MapperScan(basePackages = "com.lgd.web.mapper", markerInterface = MyMapper.class)
+//@MapperScan(basePackages = "com.lgd.web.mapper", markerInterface = MyMapper.class)
 public class Application {
 
     public static void main(String[] args) {
