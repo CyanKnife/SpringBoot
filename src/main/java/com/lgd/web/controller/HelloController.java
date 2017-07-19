@@ -10,9 +10,7 @@ import java.awt.event.ActionListener;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -329,10 +327,47 @@ public class HelloController {
         //default format
         System.out.println("Default format of Instant=" + timestamp);
 
-        //Parse examples
-        LocalDateTime dt = LocalDateTime.parse("27::Apr::2014 21::39::48",
-                DateTimeFormatter.ofPattern("dd::MMM::uuuu HH::mm::ss"));
+        //Parse examples 有问题
+        LocalDateTime dt = LocalDateTime.parse("27::Mar::2014 21::39::48",
+                DateTimeFormatter.ofPattern("d::MMM::uuuu HH::mm::ss"));
         System.out.println("Default format after parsing = " + dt);
+
+        LocalDate date1 = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+        String text = date1.format(formatter);
+        LocalDate parsedDate1 = LocalDate.parse(text, formatter);
+        System.out.println(text);
+        System.out.println(parsedDate1);
+    }
+
+    public static void testDate4() {
+        //Date to Instant
+        Instant timestamp = new Date().toInstant();
+        //Now we can convert Instant to LocalDateTime or other similar classes
+        LocalDateTime date = LocalDateTime.ofInstant(timestamp,
+                ZoneId.of(ZoneId.SHORT_IDS.get("PST")));
+        System.out.println("Date = " + date);
+
+        //Calendar to Instant
+        Instant time = Calendar.getInstance().toInstant();
+        System.out.println(time);
+        //TimeZone to ZoneId
+        ZoneId defaultZone = TimeZone.getDefault().toZoneId();
+        System.out.println(defaultZone);
+
+        //ZonedDateTime from specific Calendar
+        ZonedDateTime gregorianCalendarDateTime = new GregorianCalendar().toZonedDateTime();
+        System.out.println(gregorianCalendarDateTime);
+
+        //Date API to Legacy classes
+        Date dt = Date.from(Instant.now());
+        System.out.println(dt);
+
+        TimeZone tz = TimeZone.getTimeZone(defaultZone);
+        System.out.println(tz);
+
+        GregorianCalendar gc = GregorianCalendar.from(gregorianCalendarDateTime);
+        System.out.println(gc);
     }
 
 
@@ -360,7 +395,8 @@ public class HelloController {
         //testLambda10();
         //testDate();
         //testDate2();
-        testDate3();
+        //testDate3();
+        testDate4();
     }
 
 }
