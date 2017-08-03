@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 //@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = MockServletContext.class)
-@WebAppConfiguration
+@WebAppConfiguration// 由于是Web项目，Junit需要模拟ServletContext，因此我们需要给我们的测试类加上@WebAppConfiguration。
 @Ignore
 public class ApplicationTests {
 
@@ -43,6 +43,8 @@ public class ApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("Hello SpringBoot")));
     }
+
+
 
 
 }
